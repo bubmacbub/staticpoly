@@ -10,3 +10,4 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 POST    /api/media/applications       controllers.ApplicationResource.create()
 GET     /api/media/applications       controllers.ApplicationResource.index()
+ 
