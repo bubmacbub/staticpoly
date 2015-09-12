@@ -1,0 +1,126 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="photo-element">
+
+  <template>
+    <style>
+      /* CSS rules for your element */
+    </style>
+  
+    <!-- local DOM for your element -->
+
+    <div>{{greeting}}</div> <!-- data bindings in local DOM -->
+    <paper-input is="iron-input" id="photoID" label="photoID" bind-value="{{bindValue}}" value="{{greeting}}"></paper-input>
+    <button type="button" on-click="findanotherphoto">Find Photo</button>
+    	
+    
+    	<iron-ajax id="ironAjaxCall" auto
+		url="http://jsonplaceholder.typicode.com/users" 
+		handle-as="json"
+		params= "{{ajaxparams}}"
+		last-response="{{ajaxResponse}}" 
+		debounce-duration="300">
+		</iron-ajax>
+    <span>{{ajaxResponse}}</span>
+    
+    
+    	<template is="dom-repeat" items="[[ajaxResponse]]">
+			<p>[[item.name]]</p>
+			<!-- <img src="[[item.thumbnailUrl]]"/> -->
+		</template>
+    
+    <template is="dom-bind" id="app"> 
+		<!-- <paper-button raised="true" onClick="findAnotherPhoto();">Find Photo</paper-button> -->
+		<b>{{value}}</b>
+	 </template>
+    
+    
+  </template>
+
+  <script>
+    // element registration
+    Polymer({
+      is: "photo-element",
+
+      // add properties and methods on the element's prototype
+
+      properties: {
+        // declare properties for the element's public API
+        greeting: {
+          type: String,
+          notify:true,
+/*           value: function()
+          {
+        	  return this.$.photoID.value;
+          } */
+        },
+        ajaxparams: {
+        	type: Object,
+        	value: function(){
+        		var tempData = this.$.photoID.value;
+        		console.log("tempD:" + tempData);
+        		console.log(this.greeting);
+        		if(tempData == null)
+        			{
+        			tempData = "1";
+        			}
+        		return {
+        			id:this.greeting
+        		}
+        	}
+        }
+      },
+      
+      //METHODS
+      computeParams:function(idInput)
+      {
+    	  var photoIdInput = document.querySelector('#photoID');
+    	  return '{"id":}' + photoIdInput;
+      },
+      findanotherphoto: function()
+      {
+    	  var ironAjax = document.querySelector('#ironAjaxCall');
+    		console.log("Going to look up a photo using this object: " + ironAjax);
+    		/* ironAjax.generateRequest(); */
+    		/* this.$.ironAjaxCall.params = this.getdata(); */
+    		this.$.ironAjaxCall.generateRequest();
+      },
+      getInputBoxValue: function()
+      {
+    	  var inputId = document.querySelector("input[is=iron-input]").value;
+    	  console.log("PhotoID input box value:" + inputId);
+    	  return inputId;
+      },
+      getdata: function()
+      {
+      	console.log("GetData working");
+      	/* return "\'{\"id\":\"1\"}\'"; */
+      	/* var someObj = {id:1};
+      	return someObj; */
+      	var someValue = this.$.photoID.value;
+      	console.log("input is :" + someValue);
+      	return 
+      	{
+      		id:someValue
+      	}
+      }
+    });
+  </script>
+
+</dom-module>
+
+
+
+
+
+
+
+
+
+
+
+function 
+
+
+
+</script>
