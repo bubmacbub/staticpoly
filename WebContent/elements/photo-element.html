@@ -15,7 +15,7 @@
     	
     
     	<iron-ajax id="ironAjaxCall" auto
-		url="http://jsonplaceholder.typicode.com/users" 
+		url="http://jsonplaceholder.typicode.com/photos" 
 		handle-as="json"
 		params= "{{ajaxparams}}"
 		last-response="{{ajaxResponse}}" 
@@ -26,7 +26,7 @@
     
     	<template is="dom-repeat" items="[[ajaxResponse]]">
 			<p>[[item.name]]</p>
-			<!-- <img src="[[item.thumbnailUrl]]"/> -->
+			<img src="[[item.thumbnailUrl]]"/>
 		</template>
     
     <template is="dom-bind" id="app"> 
@@ -56,22 +56,24 @@
         },
         ajaxparams: {
         	type: Object,
-        	value: function(){
-        		var tempData = this.$.photoID.value;
-        		console.log("tempD:" + tempData);
-        		console.log(this.greeting);
-        		if(tempData == null)
-        			{
-        			tempData = "1";
-        			}
-        		return {
-        			id:this.greeting
-        		}
-        	}
+        	computed: 'concatinputandparams(greeting)'
         }
       },
       
       //METHODS
+      concatinputandparams: function(greeting)
+      {
+		var tempData = this.$.photoID.value;
+      		console.log("tempD:" + tempData);
+      		console.log(this.greeting);
+      		if(tempData == null)
+      			{
+      			tempData = "1";
+      			}
+      		return {
+      			id:this.greeting
+      		}
+      },
       computeParams:function(idInput)
       {
     	  var photoIdInput = document.querySelector('#photoID');
