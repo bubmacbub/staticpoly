@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index base file</title>
+
+
+
+
+
+<script src="bower_components/webcomponentsjs/webcomponents-lite.min.js">
+	
+</script>
+
+
+<link rel="import"
+	href="bower_components/paper-button/paper-button.html">
+	<link rel="import" href="bower_components/paper-input/paper-input.html">
+<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="elements/photo-element.html">
+<link rel="import" href="elements/user-element.html">
+<link rel="import" href="elements/x-custom.html">
+
+</head>
+
+<body>
+<div class="greetings">
+	<h3>Let's GO!</h3>
+	<x-custom first="Monty" last="Jordan"></x-custom>
+</div>
+<photo-element></photo-element>
+<user-element></user-element>
+
+
+<script>
+function getdata()
+{
+	console.log("In main page");	
+}
+</script>
+
+
+</body>
+
+</html>
