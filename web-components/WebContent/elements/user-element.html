@@ -17,11 +17,13 @@
 .group {
 	vertical-align: top;
 	margin: 1vmin;
-	padding: 1vmin;
 }
 
 paper-material {
 	margin-bottom: 1vh;
+	width: 25vmax;
+	height: 25vmax;
+	max-width:30vmax;
 }
 
 .greetings {
@@ -31,8 +33,9 @@ paper-material {
 }
 
 google-map {
-	width: 30vmax;
-	height: 30vmax;
+	width: 100%;
+	height: 25vmax;
+	max-width:30vmax;
 }
 </style>
 
@@ -49,10 +52,12 @@ google-map {
 		<paper-input class="short" label="Name"value="{{item.name}}"></paper-input>
 		<paper-input class="short" label="WebSite"></paper-input>
 		<paper-input class="short" label="Company Catch Phrase" 	value="{{item.company.catchPhrase}}"></paper-input>
-		Coordinates:<span>[[item.address.geo.lat]]</span> X <span>[[item.address.geo.lng]]</span>
 	</paper-material>
+	Coordinates:<span>[[item.address.geo.lat]]</span> X <span>[[item.address.geo.lng]]</span>
 	<google-map latitude="{{item.address.geo.lat}}" longitude="{{item.address.geo.lng}}"></google-map>
+	
 </div>
+
 </template> 
 </template> 
 
