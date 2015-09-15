@@ -6,7 +6,12 @@
 
 
 
-<style>
+<style is="custom-style">
+    
+    /* Will be prevented from affecting local DOM of Polymer elements */
+    * {
+      box-sizing: border-box;
+    }
 .greetings
 {
 width:300px;
