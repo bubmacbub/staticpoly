@@ -1,0 +1,90 @@
+<link rel="import" href="../bower_components/google-map/google-map.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
+<dom-module id="user-element"> 
+
+<template>
+
+
+<style is="custom-style">
+:host {
+	display: flex;
+	width:100vw-2vw;
+	flex-wrap: wrap;
+}
+
+.group {
+	vertical-align: top;
+	margin: 1vmin;
+}
+
+paper-material {
+	margin-bottom: 1vh;
+	width: 25vmax;
+	height: 25vmax;
+	max-width:30vmax;
+}
+
+.greetings {
+	border-radius: 1em;
+	padding: 1em;
+	color: blue;
+}
+
+google-map {
+	width: 100%;
+	height: 25vmax;
+	max-width:30vmax;
+}
+</style>
+
+<iron-ajax id="ironAjaxCall" auto 
+	url="http://jsonplaceholder.typicode.com/users" 
+	handle-as="json"
+	last-response="{{ajaxResponse}}" 
+	debounce-duration="300">
+</iron-ajax>
+<template is="dom-repeat" items="[[ajaxResponse]]">
+
+<div class="group">
+	<paper-material elevation=3 class="greetings"> 
+		<paper-input class="short" label="Name"value="{{item.name}}"></paper-input>
+		<paper-input class="short" label="WebSite" value="{{item.website}}"></paper-input>
+		<paper-input class="short" label="Company Catch Phrase" 	value="{{item.company.catchPhrase}}"></paper-input>
+		<paper-input label="email" value="{{item.email}}"></paper-input>
+	</paper-material>
+	Coordinates:<span>[[item.address.geo.lat]]</span> X <span>[[item.address.geo.lng]]</span>
+	<google-map latitude="{{item.address.geo.lat}}" longitude="{{item.address.geo.lng}}"></google-map>
+	
+</div>
+
+</template> 
+</template> 
+
+<script>
+    Polymer({
+
+      is: 'user-element',
+
+      properties: {
+
+        first: String,
+
+        last: String,
+
+        fullName: {
+          type: String,
+          // when `first` or `last` changes `computeFullName` is called once
+          // and the value it returns is stored as `fullName`
+          computed: 'computeFullName(first, last)'
+        } 
+
+      },
+
+      computeFullName: function(first, last) {
+        return first + ' ' + last;
+      }
+
+    });
+  </script> </dom-module>
