@@ -6,16 +6,43 @@
   
   
   <style is="custom-style">
-
+.group {
+        display: inline-block;
+        vertical-align: top;
+            margin:10px;
+            padding:10px;
+      }
  paper-input.short {
       width: 400px;
     }
+    paper-material
+    {
+    	margin-bottom: 5%;
+    }
+    
 </style>
-  
+  <style is="custom-style">
+    
+    /* Will be prevented from affecting local DOM of Polymer elements */
+    * {
+      box-sizing: border-box;
+    }
+.greetings
+{
+
+
+border-radius: 1em;
+padding: 1em;
+color:blue;
+background: lightgrey;
+}
+
+</style>
   <style>
    google-map {
     height: 400px;
     width:400px;
+
   } 
 </style>
     	<iron-ajax id="ironAjaxCall" auto
@@ -28,21 +55,22 @@
        	<template is="dom-repeat" items="[[ajaxResponse]]">
 
 
-
-       		<paper-material elevation=3>
-				<div>
+<div class="group">
+       		<paper-material elevation=3 class="greetings">
+				
 					<paper-input class="short" label="Name" value="{{item.name}}"></paper-input>
 					<paper-input class="short" label="WebSite"></paper-input>
 					<paper-input  class="short" label="Company Catch Phrase" value="{{item.company.catchPhrase}}"></paper-input>
-				</div>
 				
 				
-				<div>[[item.address.geo.lat]]</div>
+				
+				Coordinates:<span>[[item.address.geo.lat]]</span> X <span>[[item.address.geo.lng]]</span>
 				
 				
 				
 			</paper-material>
 			<google-map  latitude="{{item.address.geo.lat}}" longitude="{{item.address.geo.lng}}"></google-map>
+			</div>
 		</template>
   </template>
 

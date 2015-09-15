@@ -4,19 +4,21 @@
 
 
 ///////////WHAT IT LOOKS LIKE\\\\\\\\\
- <style>
-      :host {
-        display: block;
+ <style is="custom-style">
+    :host {
+        display: inline-block;
         border: 1px solid red;
-      }
-      #child-element {
+    }
+    #child-element {
         background: yellow;
-      }
-      :host  > .greetings {
-        background: orange;
-        box-shadow: 0px,0px;
-        color:cyan;
-      }
+    }
+    :host  > .greetings 
+	{
+	border-radius: 1em;
+	padding: 1em;
+	color:blue;
+	background: lightgrey;
+	}
 
 </style>
  
@@ -25,15 +27,16 @@
  
  ///////////WHAT IT IS\\\\\\\\\
   <template>
-    My name is <span>{{fullName}}</span>
+  <div class="greetings">
+    <span>{{fullName}}</span>'s xcustom tag with style from main page
     <paper-toast id="toast1" text="Pop up windows are dead. Toast!"></paper-toast>
-    <div onclick ="document.querySelector('#toast1').show()">Click some where over here in this div.  
-    It should be showing a toast message</div>
+    <div onclick ="document.querySelector('#toast1').show()" class="greetings">Click some where over here in this div.  
+    It should be showing a toast message.  This also has a class of greetings</div>
     
     
     <div id="child-element">In local DOM!</div>
-    <div class="greetings"><content>Some content tag inner text</content></div>
-    
+    <div class="greetings"><content>A div in the xcustom tag with the same class "greetings" as the main file</content></div>
+    </div>
   </template>
 
  
