@@ -1,23 +1,31 @@
 <link rel="import" href="../bower_components/google-map/google-map.html">
-
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 <dom-module id="user-element">
 
   <template>
   
   
   <style is="custom-style">
+  :host{
+/*   display:inline-flex;
+  box-sizing:content-box; */
+  }
 .group {
-        display: inline-block;
+		display:inline-flex;
         vertical-align: top;
-            margin:10px;
-            padding:10px;
+            margin:1vmin;
+            padding:1vmin;
+            max-width:50vw;
+            
       }
  paper-input.short {
       width: 400px;
     }
     paper-material
     {
-    	margin-bottom: 5%;
+    	flex:1;
+    	margin-bottom: 1vh;
     }
     
 </style>
@@ -34,15 +42,15 @@
 border-radius: 1em;
 padding: 1em;
 color:blue;
-background: lightgrey;
+
 }
 
 </style>
   <style>
    google-map {
-    height: 400px;
-    width:400px;
-
+   display: block;
+            width: 40vw;
+            height: 40vh;
   } 
 </style>
     	<iron-ajax id="ironAjaxCall" auto
