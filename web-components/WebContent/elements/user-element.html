@@ -50,8 +50,9 @@ google-map {
 <div class="group">
 	<paper-material elevation=3 class="greetings"> 
 		<paper-input class="short" label="Name"value="{{item.name}}"></paper-input>
-		<paper-input class="short" label="WebSite"></paper-input>
+		<paper-input class="short" label="WebSite" value="{{item.website}}"></paper-input>
 		<paper-input class="short" label="Company Catch Phrase" 	value="{{item.company.catchPhrase}}"></paper-input>
+		<paper-input label="email" value="{{item.email}}"></paper-input>
 	</paper-material>
 	Coordinates:<span>[[item.address.geo.lat]]</span> X <span>[[item.address.geo.lng]]</span>
 	<google-map latitude="{{item.address.geo.lat}}" longitude="{{item.address.geo.lng}}"></google-map>
