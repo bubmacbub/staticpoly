@@ -1,11 +1,47 @@
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+
 <dom-module id="x-custom">
 
+
+///////////WHAT IT LOOKS LIKE\\\\\\\\\
+ <style>
+      :host {
+        display: block;
+        border: 1px solid red;
+      }
+      #child-element {
+        background: yellow;
+      }
+      :host  > .greetings {
+        background: orange;
+        box-shadow: 0px,0px;
+        color:cyan;
+      }
+
+</style>
+ 
+ 
+ 
+ 
+ ///////////WHAT IT IS\\\\\\\\\
   <template>
     My name is <span>{{fullName}}</span>
+    <paper-toast id="toast1" text="Pop up windows are dead. Toast!"></paper-toast>
+    <div onclick ="document.querySelector('#toast1').show()">Click some where over here in this div.  
+    It should be showing a toast message</div>
     
+    
+    <div id="child-element">In local DOM!</div>
+    <div class="greetings"><content>Some content tag inner text</content></div>
     
   </template>
 
+ 
+ 
+ 
+ 
+ 
+ ////WHAT IT DOES\\\\\\\
   <script>
     Polymer({
 
