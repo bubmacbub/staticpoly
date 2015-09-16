@@ -1,0 +1,170 @@
+
+
+<dom-module id="ajax-element">
+  <style>
+    :host {
+      display: block;
+    }
+  </style>
+  <template>
+    <h1>Simple proof of concept for ajax calls</h1>
+
+
+
+
+<!-- <byutv-jsonp auto
+               url="http://localhost:9000/widgets"
+               params='{"id":"1"}'
+               last-response="{{lastResponse}}"
+               last-error="{{lastError}}"
+               debounce-duration="300"></byutv-jsonp>
+
+
+<template is="dom-repeat" items="{{lastResponse}}">
+          <div>
+            <h2>Record: <span>{{item.id}}</span></h2>
+            <h1>{{item.name}}</h1>
+
+          </div>
+        </template> 
+
+104.130.66.237:8080/api/media/applications
+http://104.130.66.237:8080/api/media/applications
+params='{"id":"1"}'
+        -->
+
+
+
+
+    <byutv-jsonp auto
+        
+        url="http://jasonplaceholder.typicode.com/posts"
+        handle-as="jsonp"
+        last-response="{{ajaxResponse}}"
+        on-response="hresponse">
+        </byutv-jsonp>
+
+        
+        <span>{{ajaxResponse}}</span>
+        <template is="dom-repeat" items="{{ajaxResponse}}">
+          <div>
+            <h2>Record: <span>{{item.id}}</span></h2>
+           <h3>{{item.title}}</h3>
+            <p>{{item.body}}</p>
+          </div>
+        </template>
+ 
+
+
+
+
+<!--     <iron-ajax
+    id="ajax"
+      auto
+      url="http://jsonplaceholder.typicode.com/posts"
+      params='{"userId":"1"}'
+      handle-as="json"
+      on-response="hresponse"
+      last-response="{{ajaxResponse}}">
+      </iron-ajax> -->
+
+
+<!-- 
+///////////////Deals with cross origin by using json p
+      <byutv-jsonp
+        auto
+        url="http://localhost:9000/widgets"
+        
+        on-response="handleResponse"
+        last-response="{{ajaxResponse}}"
+        debounce-duration="300"></byutv-jsonp>
+
+url="http://jsonplaceholder.typicode.com/posts"
+
+
+    <input id="man" is="iron-input" type="text" label="Input City" bind-value="{{city}}">
+    <paper-button raised on-click="cval">City Value</paper-button>
+    <span>{{city}}</span>
+    <!--<section class="flex layout horizontal wrap">
+    <br>
+    <hr/>
+    <paper-material elevation="2">
+    <span>{{ajaxResponse}}</span>
+    <span>{{ajaxResponse.id}}</span>
+    <span>{{ajaxResponse.name}}</span>
+</paper-material>  -->
+    <!-- 
+    <span>{{ajaxResponse.name}}</span> -->
+   <!--  <template is="dom-repeat" items="[[ajaxResponse.list]]">
+      <span>{{item.dt}}</span><br/>
+    </template> -->
+    <!--</section>
+
+params="{{ajaxParams2()}}"
+
+    -->
+
+  </template>
+</dom-module>
+<script>
+  (function () {
+    Polymer({
+      is: 'ajax-element',
+      properties: {
+        foo: {
+          type: String,
+          value: 'bar',
+          notify: true
+        },
+        nike: {
+          type: Object
+        },
+        city: {
+          type: String,
+          value: "London",
+          notify: true
+        },
+        ajaxParams: {
+          type: String,
+          computed: 'processparams(part1, qry, maxResults1, key1)',
+          notify: true
+        }
+      },
+      handleResponse: function (request) {
+        console.log("response recieved");
+      },
+      processparams: function (part1, qry, maxResults1, key1) {
+        console.log("ProcessParams");
+        var param = JSON.stringify({part: part1, q: qry, maxResults: maxResults1, key: key1});
+        console.log(param);
+        return param;
+      },
+      response: function () {
+        console.log("response")
+      },
+      ajaxParams2: function (part1, qry, maxResults1, key1) {
+        console.log(this.properties.city.value)
+        return {
+          part: part1,
+          q: this.properties.city.value,
+          maxResults: maxResults1,
+          key: key1
+        };
+      },
+      cval: function () {
+        console.log("cval");
+//        console.log("cval" + this.$.document.getElementById('man'));
+        console.log("cval-> " + document.getElementById('man').value);
+        console.log("cval-> " + this.properties.city.value);
+      },
+
+        hresponse: function(request) {
+    console.log(request.detail.response);
+    console.log(this.$.ajax.lastResponse);
+  }
+
+
+
+    });
+  })();
+</script>
